@@ -1,12 +1,11 @@
-package javaRachai;
+package rachai.data;
 
-import rachaiFront.Registro;
+import rachai.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class RachaiDAO extends User {

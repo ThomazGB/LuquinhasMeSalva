@@ -1,9 +1,6 @@
-package rachaiFront;
-
+package rachai.screens;
 
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,20 +9,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javaRachai.RachaiDAO;
-import javaRachai.User;
-import javaRachai.Utilidade;
+import rachai.data.RachaiDAO;
+import rachai.models.User;
+import rachai.utils.Navigate;
+import rachai.utils.Validador;
 
-//import java.awt.FlowLayout;
-//import javax.swing.ImageIcon;
-//import javaRachai.User;
-
-public class Registro extends RachaiDAO {
-
-	private JFrame tela;
+public class Registro {
 	private static JLabel nome;
 	private static JTextField nomeTXT;
 	private static JLabel ra;
@@ -40,6 +31,11 @@ public class Registro extends RachaiDAO {
 	private JButton cadastrar;
 	private static ImageIcon logoIMG=new ImageIcon("MicrosoftTeams-image.png");
 	private static JLabel logo;
+	private Navigate navigate;
+
+	public void setNavigate(Navigate navigate) {
+		this.navigate = navigate;
+	}
 
 	//método para verificar os campos
 	private static void verificarCampos(JTextField... campos) {
@@ -124,12 +120,9 @@ public class Registro extends RachaiDAO {
 	}
 
 	public JButton botaoCadastrar() {
-		Registro registro = new Registro();
 		cadastrar = new JButton("Cadastrar");
 		cadastrar.setBounds(185, 240, 100, 25);
 		cadastrar.addActionListener(new ActionListener() {
-
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				User user = new User();
@@ -137,9 +130,9 @@ public class Registro extends RachaiDAO {
 				String senha = new String(caracteresSenha);
 				RachaiDAO dao = new RachaiDAO();
 				
-				if(!Utilidade.validarNome(nomeTXT.getText())) {
+				if(!Validador.validarNome(nomeTXT.getText())) {
 					JOptionPane.showMessageDialog(null, "O seu nome tem caracteres inválidos", "Cadastro", JOptionPane.WARNING_MESSAGE);					
-					if(!Utilidade.validarSenha(senha)) {
+					if(!Validador.validarSenha(senha)) {
 						JOptionPane.showMessageDialog(null, "A senha precisa possuir 8 caracteres, "
 								+ "1 letra maiúscula e 1 caracter especial.", "Cadastro", JOptionPane.WARNING_MESSAGE);
 
@@ -153,16 +146,22 @@ public class Registro extends RachaiDAO {
 		return cadastrar;
 	}
 
-/*  public JButton botaoAlterarCadastro() {
+	public JButton botaoAlterarCadastro() {
 		alterar = new JButton("Alterar Cadastro");
 		alterar.setBounds(155, 270, 130, 25);
-		alterar.addActionListener(new Registro());
-		return alterar;
-	} */
+		alterar.addActionListener(new ActionListener() {
+			@Override
+            public void actionPerformed(ActionEvent e) {
+                navigate.setActualScreen("login");
+            }
+        });
 
-	public void telaRegistro() {
+		return alterar;
+	}
+
+	public JFrame telaRegistro() {
 		//tela principal
-		tela = new JFrame();
+		JFrame tela = new JFrame();
 		tela.setSize(320, 500);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tela.getContentPane().setBackground(Color.decode("#EFEFEF"));
@@ -183,9 +182,9 @@ public class Registro extends RachaiDAO {
 		tela.getContentPane().add(labelSenha());
 		tela.getContentPane().add(textSenha());
 		tela.getContentPane().add(botaoCadastrar());
-//		tela.getContentPane().add(botaoAlterarCadastro());
+		tela.getContentPane().add(botaoAlterarCadastro());
 
-		tela.setVisible(true);
+		return tela;
 	}
 
 }
