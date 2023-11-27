@@ -23,7 +23,7 @@ public class Alterar implements ActionListener {
 	private static JLabel sucesso;
 	
 	
-	private static ImageIcon logoIMG=new ImageIcon("MicrosoftTeams-image.png");
+	private static ImageIcon logoIMG = new ImageIcon("images/logo.png");
 	private static JLabel logo;
 
 	public static void main(String[] args) {

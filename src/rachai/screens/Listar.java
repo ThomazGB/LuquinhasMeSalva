@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Listar implements ActionListener{
+public class Listar implements ActionListener {
 	
 	private static JLabel alterar;
 	private static JTextField alterarTXT;
@@ -18,7 +18,7 @@ public class Listar implements ActionListener{
 	private static JButton deletarBUT;
 	private static JLabel sucesso;
 	
-	private static ImageIcon logoIMG=new ImageIcon("MicrosoftTeams-image.png");
+	private static ImageIcon logoIMG = new ImageIcon("images/logo.png");
 	private static JLabel logo;
 	
 	public static void main(String[] args) {
